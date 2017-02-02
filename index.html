@@ -45,16 +45,16 @@
 		<div>You – <span class="Now-date"></span></div>
 	</div>
 	<script>
+		var days = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday'
+		];
 		function update() {
-			var days = [
-				'Sunday',
-				'Monday',
-				'Tuesday',
-				'Wednesday',
-				'Thursday',
-				'Friday',
-				'Saturday'
-			];
 			[].forEach.call(document.querySelectorAll('.Now'), function (el) {
 				var now = new Date();
 				var zone = el.getAttribute('data-zone');

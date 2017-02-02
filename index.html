@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Federico Time</title>
+	<style>
+		html {
+			font-family: sans-serif;
+
+			font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue;
+			background: #408000;
+			color: #FFF;
+			font-size: 5vmin;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			line-height: 1;
+			user-select: none;
+			cursor: default;
+		}
+		body {
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			justify-content: center;
+		}
+		.Now {
+			padding: 1em 0;
+		}
+		.Now-time {
+			font-weight: bold;
+			font-size: 20vmin;
+			line-height: 0.9;
+		}
+		.Now-time span {
+			vertical-align: 0.1em;
+		}
+		.blink {
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="Now" data-zone="-540">
+		<div class="Now-who"></div>
+		<div class="Now-time"></div>
+		<div>Federico – <span class="Now-date"></span></div>
+	</div>
+	<div class="Now">
+		<div class="Now-who"></div>
+		<div class="Now-time"></div>
+		<div>You – <span class="Now-date"></span></div>
+	</div>
+	<script>
+		function update() {
+			var days = [
+				'Sunday',
+				'Monday',
+				'Tuesday',
+				'Wednesday',
+				'Thursday',
+				'Friday',
+				'Saturday'
+			];
+			[].forEach.call(document.querySelectorAll('.Now'), function (el) {
+				var now = new Date();
+				var zone = el.getAttribute('data-zone');
+				if (zone) {
+					zone = Number(zone) - Number(now.getTimezoneOffset());
+					now.setMinutes(now.getMinutes() + zone);
+				}
+
+				var hours = now.getHours();
+				var minutes = now.getMinutes();
+				var seconds = now.getSeconds();
+				var blink = '<span class="' + (seconds % 2 ? 'blink' : '') + '">:</span>';
+	  		var ampm = hours >= 12 ? 'PM' : 'AM';
+				el.querySelector('.Now-time').innerHTML = hours % 12 + blink + minutes + ' ' + ampm;
+
+				var day = now.getDay();
+				el.querySelector('.Now-date').textContent = days[day];
+			});
+		}
+		update();
+		setInterval(update, 1000);
+	</script>
+</body>
+</html>

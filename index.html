@@ -72,7 +72,7 @@
 				var seconds = now.getSeconds();
 				var blink = '<span class="' + (seconds % 2 ? 'blink' : '') + '">:</span>';
 	  		var ampm = hours >= 12 ? 'PM' : 'AM';
-				el.querySelector('.Now-time').innerHTML = hours % 12 + blink + minutes + ' ' + ampm;
+				el.querySelector('.Now-time').innerHTML = (hours % 12 || 12) + blink + minutes + ' ' + ampm;
 
 				var day = now.getDay();
 				el.querySelector('.Now-date').textContent = days[day];

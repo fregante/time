@@ -73,7 +73,7 @@
 				}
 
 				var hours = now.getHours();
-				var minutes = now.getMinutes();
+				var minutes = ('0' + now.getMinutes()).substr(-2);
 				var seconds = now.getSeconds();
 				var blink = '<span class="' + (seconds % 2 ? 'blink' : '') + '">:</span>';
 	  		var ampm = hours >= 12 ? 'PM' : 'AM';

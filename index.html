@@ -59,7 +59,7 @@
 				var now = new Date();
 				var zone = el.getAttribute('data-zone');
 				if (zone) {
-					zone = Number(zone) - Number(now.getTimezoneOffset());
+					zone = Number(now.getTimezoneOffset()) - Number(zone);
 					now.setMinutes(now.getMinutes() + zone);
 				}
 
